@@ -28,11 +28,16 @@ Command line arguments:
 - `--port=1234` or `-p 1234` specify port. Default is 1234.
 
 
+### Debug mode
+
+If you pass `--debug` switch, then you can navigate your browser to t-eye's address:port and you'll get minimal UI for testing your configuration file.
+
+
 ## Configuration file
 
 Example **config.json**
 
-```
+```json
 {
   "list_dir": {
     "script": "/root/list.sh",
@@ -59,7 +64,7 @@ In this example:
 
 Example **request from client**:
 
-```
+```json
 { 
   "command": "list_dir",
   "args": { 
@@ -78,7 +83,7 @@ In short: you need to open websocket conection, send command (JSON string) and l
 
 Example HTML:
 
-```
+```html
 <!DOCTYPE html>
 <html>
 <head>
