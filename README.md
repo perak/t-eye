@@ -84,36 +84,41 @@ In short: you need to open websocket conection, send command (JSON string) and l
 Example HTML:
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-    <title></title>
-</head>
+  <body>
 
-<body>
-    <textarea id="message"></textarea><br />
+    <textarea id="message" style="width: 100%; height: 200px;">{
+      "command": "",
+      "args": {
+      }
+    }
+    </textarea>
 
-    <button onclick="sendMessage()" type="button">Send</button>
+    <br />
 
-    <div id="consoleDiv" style="background: black; color: lime; font-family: Courier New, Courier, monospace; height: 500px; overflow: auto;">
-    </div>
-    
+    <button type="button" onclick="sendMessage()">Send</button>
+
+    <br />
+
+    <div id="console" style="background: black; color: lime; font-family: Courier New, Courier, monospace; height: 500px; overflow: auto;"></div>
+
     <script>
       var ws = new WebSocket('ws://localhost:1234', 'echo-protocol');
-      
-      ws.addEventListener("message", function(e) {
-        var msg = e.data;
-        var consoleDiv = document.getElementById('consoleDiv');
-        consoleDiv.innerHTML += '<br />' + msg;
-        consoleDiv.scrollTop = consoleDiv.scrollHeight;
-      });
-
       function sendMessage() {
         var message = document.getElementById('message').value;
         ws.send(message);
       }
+      ws.addEventListener("message", function(e) {
+        var msg = JSON.parse(e.data);
+        var consoleDiv = document.getElementById('console');
+        var color = "inherit";
+        if(msg.status == "error") color = "red";
+        consoleDiv.innerHTML += '<br /><span style="color: ' + color + ';">' + msg.msg + '</span>';
+        consoleDiv.scrollTop = consoleDiv.scrollHeight;
+      });
     </script>
-</body>
+  </body>
 </html>
 ```
 
