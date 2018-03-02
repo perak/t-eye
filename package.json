@@ -1,6 +1,6 @@
 {
   "name": "t-eye",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Execute terminal commands and retrieve output via websocket",
   "main": "t-eye.js",
   "scripts": {

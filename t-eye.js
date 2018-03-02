@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 var argv = require("optimist").argv;
 var fs = require("fs");
 var https = require("https");
