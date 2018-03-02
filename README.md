@@ -59,7 +59,7 @@ In this example:
 - `script` is path to script to be executed.
 - `args` is array of arguments expected for this command. Argument must have `name`.
 - For each argument, you can specify `type`, `required` and `regex` (not mandatory).
-- Argument `type` is one of types returned by `typeOf()` 
+- Argument `type` is one of the types returned by `typeOf()` 
 
 
 Example **request from client**:
@@ -116,6 +116,41 @@ Example HTML:
 </body>
 </html>
 ```
+
+
+## Full config file format
+
+In the root of the config object you can add special key named `terminal_eye` with additional settings:
+
+```json
+{
+  "terminal_eye": {
+    "port": 1234,
+    "ssl": false,
+    "ssl_key": "/path/to/privkey.pem",
+    "ssl_cert": "/path/to/fullchain.pem",
+    "default_force_uid": 0,
+    "default_force_gid": 0
+  },
+
+  ...
+
+}
+```
+
+- `port` integer, default `1234`. Override default port. Note: port given via command line `--port` switch have precedence over this one.
+
+- `ssl` bool, default `false`. If t-eye is exposed directly to host port (not behind reverse proxy e.g. nginx) then you still can run it via SSL.
+
+- `ssl_key` if `ssl: true` this is full path to file containing private key issued by SSL CA (for example: `/etc/letsencrypt/live/example.com/privkey.pem`).
+
+- `ssl_cert` if `ssl: true` this is full path to file containing SSL certificate  (for example: `/etc/letsencrypt/live/example.com/fullchain.pem`).
+
+- `default_force_uid` try running commands as specified user id.
+
+- `default_force_gid` try running commands as specified group id.
+
+
 
 That's it.
 Enjoy! :)
