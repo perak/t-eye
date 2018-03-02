@@ -2,7 +2,7 @@
   "name": "t-eye",
   "version": "1.0.1",
   "description": "Execute terminal commands and retrieve output via websocket",
-  "main": "index.js",
+  "main": "t-eye.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -14,8 +14,9 @@
     "terminal",
     "websocket"
   ],
+  "preferGlobal": "true",
   "bin": {
-    "t-eye": "index.js"
+    "t-eye": "t-eye.js"
   },
   "author": "Petar Korponaić",
   "license": "ISC",
